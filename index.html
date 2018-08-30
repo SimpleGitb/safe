@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>云悉监测验证工具</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/Safverification.css"/>
+		<link rel="stylesheet" type="text/css" href="css/jquery.editable-select.min.css"/>
+		<link rel="icon" href="http://www.yunsee.cn/home_css/index/img/favicon.ico"  type="image/x-icon">
+		<link href="css/atelier-plateau-light.css" rel="stylesheet">  
+<script src="js/highlight.min.js"></script>  
+<script >hljs.initHighlightingOnLoad();</script> 
+<style type="text/css">
+		pre {
+    position: relative;
+    white-space:pre-wrap;
+}
+code {
+    display: block;
+    font-weight: 300;
+    font-family: Menlo, monospace;
+    font-size: 0.8em;
+}
+
+.hljs {
+  border: 0;
+  font-size: 12px;
+  display: block;
+  padding: 1px;
+   margin: 0;
+  width: 100%;
+   font-weight: 200;
+   white-space: pre-wrap;
+   background: white;
+   /*color: black;*/
+   font-family: "微软雅黑";
+}
+.hljs ol {
+   list-style: decimal;
+   margin: 0px 0px 0 40px !important;
+   padding: 0px;
+	color: #666666;
+}
+
+ ol li {
+ list-style: decimal-leading-zero;
+
+  border-left: 1px solid #ddd !important;
+
+   padding: 5px!important;
+
+   margin: 0 !important;
+color: #666666;
+
+}
+
+</style>
+  </head>
+  <body >
+  	<div class="alert alert-warning">
+		    <a href="#" class="close" data-dismiss="alert">
+		        &times;
+		    </a>
+		    <strong>警告！</strong>本次请求失败，请稍后再试！
+		</div>
+		<div id="myModal" class="modal fade" data-keyboard="false"
+            data-backdrop="static" data-role="dialog"
+            aria-labelledby="myModalLabel" aria-hidden="true">
+            <div id="loading" class="loading">加载中……</div>
+        </div>
+        
+    <nav class="navbar navbar-default">
+	  <div class="container-fluid">
+	    <div class="navbar-header">
+	      <a class="navbar-brand" >
+	        <img alt="Brand" src="img/u144.png">
+	      </a>
+	      <a class="navbar-brand" style="padding-top: 0;font-size: 15px;font-family: '微软雅黑';font-style: normal;color: #FFFFFF;padding-left: 10px;">
+	        云悉监测验证工具
+	      </a>
+	    </div>
+	    <!--<div class="navbar-return">
+	    	<a href="#">
+	    		<img src="img/u9213.png"/>
+	    		<p>返回上一页</p>
+	    	</a>
+	    </div>-->
+	  </div>
+	</nav>
+		
+	<div class="main">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-ld-12">
+					<div class="input-group">
+				      <input type="text" class="form-control btnquery" autocomplete="on" placeholder="请输入查询网址, 格式：www.aaa.com">
+				      <span class="input-group-btn">
+				        <button class="btn btn-default" id="webQuery" type="button" onclick="webQuery()">监测</button>
+				      </span>
+				  </div>
+				  <a onclick="configuration()"><span class="color">*</span> 高级配置</a>
+				</div>
+				<div class="col-ld-12 serach">
+					<div class="input-group">
+					  <span class="input-group-addon" id="basic-addon1">Referer</span>
+						<select id="editable-select" class="form-control selectval1" onchange="selectval1()" value="https://www.baidu.com">
+						    <option>https://www.baidu.com</option>
+						</select>
+					</div>
+				</div>
+				<div class="col-ld-12 serach">
+					<div class="input-group">
+					  <span class="input-group-addon" id="basic-addon1">User-Agent</span>
+						<select id="editable-select2" class="form-control selectval2" onchange="selectval2()" value="Mozilla/5.0 (compatible; Baiduspider/2.0; +http://www.baidu.com/search/spider.html)">
+						    <option>Mozilla/5.0 (compatible; Baiduspider/2.0; +http://www.baidu.com/search/spider.html)</option>
+								<option>Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0);</option>
+								<option>Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)</option>
+								<option>Sogou web spider/4.0 (+http://www.sogou.com/docs/help/webmasters.htm#07)</option>
+						</select>
+					</div>
+				</div>
+			</div>
+			
+				<div class="alert alert-info">
+		    <a href="#" class="close" data-dismiss="alert">
+		        &times;
+		    </a>
+		    <span class="glyphicon glyphicon-exclamation-sign" style="margin-left: 10px;margin-right: 10px;"></span>
+本在线工具用于验证网站劫持类被黑事件，高级配置可自定义访问来路与客户端
+		</div>
+		</div>
+
+		<div class="container-fluid main2">
+			<div class="content">
+				<span>关键字：</span> 
+				<div class="input-group">
+		      <input type="text" class="form-control" id="keyword" placeholder="请输入关键字">
+		      <span class="input-group-btn">
+		        <button class="btn btn-default" id="btn" type="button">搜 索</button>
+		      </span>
+				</div>
+				<div class="clear"></div>
+				<ul id="myTab" class="nav nav-tabs">
+					<li class="active">
+						<a href="#tab1" data-toggle="tab">源码</a>
+					</li>
+					<li><a href="#tab2" data-toggle="tab">预览</a></li>
+					<li><a href="#tab3" data-toggle="tab">响应头</a></li>
+				</ul>
+				<div id="myTabContent" class="tab-content">
+					<div class="tab-pane fade in active" id="tab1">
+						<p><span style="visibility: hidden;margin: 0;clear: both;">0</span>
+							 <pre style="background: white;">
+							 		<code class="html">
+									</code>
+							 </pre>
+						</p>
+					</div>
+					<div class="tab-pane fade" id="tab2">
+						<p>
+							<iframe src="" frameborder="no" border="0" width="100%"  height="650px" name="myframe" id="myframe"></iframe>
+						</p>
+					</div>
+					<div class="tab-pane fade" id="tab3">
+						<p style="word-break:  break-word;text-align:justify;padding: 10px 0;color: #666;"></p>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+	</div>
+	
+     <script src="js/jquery-3.2.1.min.js"></script>
+     <script src="js/jquery.autocomplete.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="css/jquery.editable-select.min.js"></script>
+    <script type="text/javascript" src="js/verificaton.js"></script>
+  </body>
+</html>

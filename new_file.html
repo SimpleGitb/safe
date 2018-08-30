@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="css/jquery.editable-select.min.css"/>
+	<link rel="stylesheet" type="text/css" href="css/atelier-plateau-light.css"/>
+<script src="js/highlight.min.js"></script>  
+<script >hljs.initHighlightingOnLoad();</script> 
+<style type="text/css">
+	*{
+		padding: 0;
+		margin: 0;
+	}
+pre {
+    position: relative;
+    white-space:pre-wrap;
+}
+code {
+    display: block;
+
+}
+ ol {
+   list-style: decimal;
+   margin: 0px 0px 0 40px !important;
+   padding: 0px;
+	color: #666666;
+}
+
+ ol li {
+  list-style: decimal-leading-zero;
+  border-left: 1px solid #ddd !important;
+  padding: 5px!important;
+  margin: 0 !important;
+  color: #666666;
+}
+</style>
+	<body >
+<pre><code class="html">
+&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-cn"&gt;
+&lt;head&gt;
+    &lt;meta charset="utf-8" /&gt;
+    &lt;meta http-equiv="X-UA-Compatible" content="IE=Edge" /&gt;
+    &lt;meta http-equiv="Content-Language" content="zh-cn" /&gt;
+    &lt;meta name="keywords" content="音乐,QQ音乐,在线听歌,音乐下载,音乐播放器,音乐网站,MV,巅峰榜,音乐排行榜,翻译歌曲,热门歌曲,经典老歌,无损音乐,无损曲库"/&gt;
+    &lt;meta name="description" content="QQ音乐是腾讯公司推出的一款网络音乐服务产品，海量音乐在线试听、新歌热歌在线首发、歌词翻译、手机铃声下载、高品质无损音乐试听、海量无损曲库、正版音乐下载、空间背景音乐设置、MV观看等，是互联网音乐播放和下载的优选。" /&gt;
+    &lt;meta name="mobile-agent" content="format==[html5];url=https://y.qq.com/m/index.html"&gt;
+    &lt;meta name="applicable-device" content="pc"&gt;
+    &lt;title&gt;QQ音乐-千万正版音乐海量无损曲库新歌热歌天天畅听的高品质音乐平台！&lt;/title&gt;
+    &lt;link rel="canonical" href="//y.qq.com/portal/player.html" /&gt;
+    &lt;link rel="stylesheet" href="//y.gtimg.cn/mediastyle/yqq/player.css?max_age=2592000&amp;v=2017323" /&gt;
+&lt;script type="text/javascript"&gt;
+    var _speedMark = new Date();
+&lt;/script&gt;
+</code></pre>
+
+	</body>
+     <script src="js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$('pre code').each(function(i, block) {
+			    hljs.highlightBlock(block);
+			    $(this).html("<ol><li>" + $(this).html().replace(/\n/g,"\n</li><li>") +"\n</li></ol>");
+			});
+	});
+</script>
+
+<!--<script type="text/javascript">
+$(function() {
+    $("#btn").click(function() {
+        var $keyword = $("#keyword").val();
+        setHeightKeyWord($keyword)
+    });
+});
+function setHeightKeyWord(keyword) {
+    /* 获取需要处理的关键字 */
+    var tempHTML = $("#text").html();
+    /* 关键字替换文本 该文本设置有高亮颜色 */
+    var replaceText = "<font style='color:red;'>$1</font>";
+    /* 关键字正则匹配规则 */
+    var r = new RegExp("(" + keyword + ")", "ig");
+    /* 将匹配到的关键字替换成我们预设的文本 */
+    tempHTML = tempHTML.replace(r, replaceText);
+    /* 将文本显示到浏览器上 */
+    $("#text").html(tempHTML);
+}
+</script>-->
+</html>
